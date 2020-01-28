@@ -28,9 +28,10 @@ RUN apt-get update -qq \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-#ModuleNotFoundError: No module named 'conda'
-#https://github.com/conda/conda/issues/9004
-RUN conda --version && conda install conda=4.6.14 && conda --version && conda install -y --quiet \
+# ModuleNotFoundError: No module named 'conda'
+# https://github.com/conda/conda/issues/9004
+# conda install conda=4.6.14
+RUN conda --version && conda install conda && conda --version && conda install -y --quiet \
 	jupyter \
 	Pillow \
  && conda config --add channels conda-forge \
