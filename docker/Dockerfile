@@ -28,7 +28,7 @@ RUN apt-get update -qq \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-RUN conda --version && conda version && conda install -y --quiet \
+RUN conda --version && conda install conda=4.6.14 && conda --version && conda install -y --quiet \
 	jupyter \
 	Pillow \
  && conda config --add channels conda-forge \
