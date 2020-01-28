@@ -68,8 +68,8 @@ CMD jupyter notebook \
 	--ip=${NOTEBOOK_IP} \
 	--port=${NOTEBOOK_PORT} \
 	--NotebookApp.token='' \
-	--NotebookApp.password=''
-	--NotebookApp.allow_origin='*'
-	--NotebookApp.base_url=${NB_PREFIX}
+	--NotebookApp.password='' \
+	--NotebookApp.allow_origin='*' \
+	--NotebookApp.base_url=${NB_PREFIX} \
 	--no-browser \
 	--allow-root
