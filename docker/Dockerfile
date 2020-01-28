@@ -67,6 +67,7 @@ RUN     conda install -y --quiet -c conda-forge nodejs && \
 	echo 'jupyter' && jupyter --version && \
 	echo 'node' && node --version && \
 	echo 'npm' && npm --version && \
+	echo 'notebook' && jupyter notebook --version && \
 	pip install kubeflow-kale kfp
 	
 RUN conda update -c conda-forge jupyterlab && jupyter labextension install kubeflow-kale-launcher
