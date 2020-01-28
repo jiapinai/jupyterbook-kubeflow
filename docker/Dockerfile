@@ -28,7 +28,7 @@ RUN apt-get update -qq \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-RUN conda install -y --quiet \
+RUN echo $PATH && ln -s /opt/conda/bin/conda /usr/bin && conda install -y --quiet \
 	jupyter \
 	Pillow \
  && conda config --add channels conda-forge \
@@ -42,7 +42,7 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/
 RUN chmod +x /usr/bin/tini
 
 # pytorch install
-RUN echo $PATH && ln -s /opt/conda/bin/conda /usr/bin && conda install -y --quiet \
+RUN conda install -y --quiet \
 	numpy pyyaml mkl mkl-include setuptools cmake cffi typing \
  && conda install -y --quiet -c mingfeima \
 	mkldnn \
