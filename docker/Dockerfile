@@ -28,6 +28,8 @@ RUN apt-get update -qq \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
+#ModuleNotFoundError: No module named 'conda'
+#https://github.com/conda/conda/issues/9004
 RUN conda --version && conda install conda=4.6.14 && conda --version && conda install -y --quiet \
 	jupyter \
 	Pillow \
@@ -56,7 +58,10 @@ RUN conda install -y --quiet \
 # Install Kale python package globally
 # Install Kale JupyterLab extension
 # pip install kfp --upgrade --user
-RUN pip install kubeflow-kale kfp && jupyter labextension install kubeflow-kale-launcher
+# conda install -c conda-forge nodejs
+RUN conda install -y --quiet -c conda-forge nodejs && \
+	pip install kubeflow-kale kfp && \
+	jupyter labextension install kubeflow-kale-launcher
 
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
