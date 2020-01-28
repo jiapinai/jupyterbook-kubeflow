@@ -60,14 +60,16 @@ RUN conda install -y --quiet \
 # Install Kale JupyterLab extension
 # pip install kfp --upgrade --user
 # conda install -c conda-forge nodejs
-RUN 	echo 'python' && python --version && \
+
+RUN     conda install -y --quiet -c conda-forge nodejs && \
+	echo 'python' && python --version && \
 	echo 'conda' && conda --version && \
 	echo 'jupyter' && jupyter --version && \
 	echo 'node' && node --version && \
 	echo 'npm' && npm --version && \
-	conda install -y --quiet -c conda-forge nodejs && \
-	pip install kubeflow-kale kfp && \
-	jupyter labextension install kubeflow-kale-launcher
+	pip install kubeflow-kale kfp
+	
+RUN 	jupyter labextension install kubeflow-kale-launcher
 
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
