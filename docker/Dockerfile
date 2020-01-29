@@ -13,7 +13,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get update -qq \
  && apt-get upgrade -y \
  && apt-get install --no-install-recommends -y \
-	curl grep sed dpkg wget bzip2 ca-certificates \
+	curl grep sed dpkg wget bzip2 ca-certificates vim \
 	libglib2.0-0 libxext6 libsm6 libxrender1 \
 	git mercurial subversion \
 	# opencv3
