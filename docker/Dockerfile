@@ -78,8 +78,8 @@ RUN pip install  \
 	jupyter nbextensions_configurator enable
 ADD conf/notebook.json /root/.jupyter/nbconfig/notebook.json
 
-#RUN conda update jupyter jupyterlab && \
-#jupyter labextension install kubeflow-kale-launcher
+RUN pip install jupyterlab==1.2.6 && \
+	jupyter labextension install kubeflow-kale-launcher
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
