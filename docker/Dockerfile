@@ -91,7 +91,7 @@ ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
 # https://www.kubeflow.org/docs/notebooks/custom-notebook/
 CMD jupyter notebook \
-	--config=/root/.jupyter/jupyter_notebook_config.json
+	--config=/root/.jupyter/jupyter_notebook_config.json \
 	--notebook-dir=${NOTEBOOK_DIR} \
 	--ip=${NOTEBOOK_IP} \
 	--port=${NOTEBOOK_PORT} \
