@@ -72,7 +72,7 @@ RUN     conda install -y --quiet -c conda-forge nodejs && \
 
 #Jupyter Notebook代码自动补全
 RUN pip install  -i https://pypi.mirrors.ustc.edu.cn/simple \
-	jupyter_contrib_nbextensions jupyter_nbextensions_configurator yadf && \
+	jupyter_contrib_nbextensions jupyter_nbextensions_configurator && \
 	jupyter contrib nbextension install && \
 	jupyter nbextensions_configurator enable
 
