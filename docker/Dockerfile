@@ -76,13 +76,7 @@ RUN pip install  \
 	jupyter_contrib_nbextensions jupyter_nbextensions_configurator autopep8 && \
 	jupyter contrib nbextension install && \
 	jupyter nbextensions_configurator enable
-RUN \
-jupyter nbextension enable spellchecker/main && \
-jupyter nbextension enable codefolding/main && \
-jupyter nbextension enable autopep8/main && \
-jupyter nbextension enable skip-traceback/main && \
-jupyter nbextension enable scratchpad/main && \
-jupyter nbextension enable init_cell/main
+ADD conf/notebook.json /root/.jupyter/nbconfig/notebook.json
 
 #RUN conda update jupyter jupyterlab && \
 #jupyter labextension install kubeflow-kale-launcher
