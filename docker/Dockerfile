@@ -70,8 +70,8 @@ RUN     conda install -y --quiet -c conda-forge nodejs && \
 	echo 'notebook' && jupyter notebook --version && \
 	pip install kubeflow-kale kfp
 	
-RUN conda update jupyter jupyterlab && \
-jupyter labextension install kubeflow-kale-launcher
+#RUN conda update jupyter jupyterlab && \
+#jupyter labextension install kubeflow-kale-launcher
 
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
