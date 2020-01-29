@@ -69,13 +69,17 @@ RUN     conda install -y --quiet -c conda-forge nodejs && \
 	echo 'npm' && npm --version && \
 	echo 'notebook' && jupyter notebook --version && \
 	pip install kubeflow-kale kfp
-	
+
+#Jupyter Notebook代码自动补全
+RUN pip install  -i https://pypi.mirrors.ustc.edu.cn/simple \
+	jupyter_contrib_nbextensions jupyter_nbextensions_configurator yadf && \
+	jupyter contrib nbextension install && \
+	jupyter nbextensions_configurator enable
+
 #RUN conda update jupyter jupyterlab && \
 #jupyter labextension install kubeflow-kale-launcher
 
-
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
-
 
 # https://www.kubeflow.org/docs/notebooks/custom-notebook/
 CMD jupyter notebook \
