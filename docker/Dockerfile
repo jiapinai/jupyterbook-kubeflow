@@ -45,7 +45,7 @@ RUN conda --version \
  && conda clean -tipsy
 
 # Install tensorflow-gpu
-RUN pip install apache-beam tensorflow-gpu==1.14.0  --ignore-installed
+RUN pip install apache-beam tensorflow-gpu==1.14.0 tensorflow-transform==0.13.0 --ignore-installed
 
 # tini install
 ENV TINI_VERSION=v0.18.0
@@ -86,7 +86,13 @@ ADD conf/notebook.json /root/.jupyter/nbconfig/notebook.json
 
 RUN pip install jupyterlab==1.2.6 && \
 	jupyter labextension install kubeflow-kale-launcher
-RUN pip uninstall numpy -y; pip uninstall numpy -y; pip uninstall numpy -y; pip uninstall numpy -y; pip uninstall numpy -y; pip install numpy
+RUN pip uninstall numpy -y; \
+	pip uninstall numpy -y; \
+	pip uninstall numpy -y; \
+	pip uninstall numpy -y; \
+	pip uninstall numpy -y; \
+	pip install numpy==1.17.5
+
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
 # https://www.kubeflow.org/docs/notebooks/custom-notebook/
