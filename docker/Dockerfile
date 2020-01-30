@@ -53,14 +53,14 @@ RUN conda install -y --quiet \
 	torchvision \
 	magma-cuda91 \
 	cuda91 \
-	'pytorch=1.0.0'
-
+	'pytorch=1.4.0'
+# Install tensorflow-gpu
+RUN pip install apache-beam tensorflow-gpu==1.14.0
 
 # Install Kale python package globally
 # Install Kale JupyterLab extension
 # pip install kfp --upgrade --user
 # conda install -c conda-forge nodejs
-
 RUN     conda install -y --quiet -c conda-forge nodejs && \
 	echo 'python' && python --version && \
 	echo 'conda' && conda --version && \
