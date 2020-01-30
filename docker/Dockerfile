@@ -99,7 +99,8 @@ RUN pip uninstall numpy -y; \
 
 # tensorrt install
 # https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html
-ENV version='7.0.0-1+cuda9.2'
+# ENV version='7.0.0-1+cuda9.2'
+ENV version='7.0.0-1+cuda10.2'
 RUN apt-get update -qq \
  && apt-get install -y \
 	libnvinfer7=${version} \
