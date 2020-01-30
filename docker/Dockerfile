@@ -100,11 +100,23 @@ RUN pip uninstall numpy -y; \
 
 # tensorrt install
 # https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html
+ENV version='7.0.0-1+cuda9.2'
 RUN apt-get update -qq \
- && apt-get install --no-install-recommends -y \
+ && apt-get install -y \
+	libnvinfer7=${version} \
+	libnvonnxparsers7=${version} \
+	libnvparsers7=${version} \
+	libnvinfer-plugin7=${version} \
+	libnvinfer-dev=${version} \
+	libnvonnxparsers-dev=${version} \
+	libnvparsers-dev=${version} \
+	libnvinfer-plugin-dev=${version} \
+	python-libnvinfer=${version} \
+	python3-libnvinfer=${version} \
+ && apt-mark hold \
 	libnvinfer7 libnvonnxparsers7 libnvparsers7 libnvinfer-plugin7 \
-        libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev libnvinfer-plugin-dev \
-        python-libnvinfer python3-libnvinfer \
+	libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev \
+	libnvinfer-plugin-dev python-libnvinfer python3-libnvinfer \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
