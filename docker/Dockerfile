@@ -86,7 +86,7 @@ ADD conf/notebook.json /root/.jupyter/nbconfig/notebook.json
 
 RUN pip install jupyterlab==1.2.6 && \
 	jupyter labextension install kubeflow-kale-launcher
-
+RUN pip uninstall numpy -y; pip uninstall numpy -y; pip uninstall numpy -y; pip uninstall numpy -y; pip uninstall numpy -y; pip install numpy
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
 # https://www.kubeflow.org/docs/notebooks/custom-notebook/
