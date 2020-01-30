@@ -34,9 +34,11 @@ RUN apt-get update -qq \
 # https://github.com/conda/conda/issues/9004
 # conda install conda=4.6.14
 # conda update --all
-RUN conda --version && conda update --all && conda --version && conda install -y --quiet \
-	jupyter \
-	Pillow \
+RUN conda --version \
+ && conda install conda \
+ && conda --version \
+ && conda update --all \
+ && conda install -y --quiet jupyter Pillow \
  && conda config --add channels conda-forge \
 	# opencv3 install
  && conda install -c menpo opencv3 \
