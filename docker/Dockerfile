@@ -45,7 +45,12 @@ RUN conda --version \
  && conda clean -tipsy
 
 # Install tensorflow-gpu
-RUN pip install apache-beam tensorflow-gpu==1.14.0 tensorflow-transform==0.13.0 --ignore-installed
+RUN pip install apache-beam \
+	tensorflow-gpu==1.14.0 \
+	tensorflow-transform==0.13.0 \
+	tensorflow_model_analysis==0.13.0 \
+	tensorflow_data_validation==0.13.0 \
+	--ignore-installed
 
 # tini install
 ENV TINI_VERSION=v0.18.0
