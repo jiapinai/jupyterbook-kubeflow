@@ -10,8 +10,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	NOTEBOOK_PORT=8888 \
 	NB_PREFIX=''
 
-# Install tensorflow-gpu
-RUN pip install apache-beam tensorflow-gpu==1.14.0
 
 RUN apt-get update -qq \
  && apt-get upgrade -y \
@@ -35,13 +33,17 @@ RUN apt-get update -qq \
 # ModuleNotFoundError: No module named 'conda'
 # https://github.com/conda/conda/issues/9004
 # conda install conda=4.6.14
-RUN conda --version && conda install conda && conda --version && conda install -y --quiet \
+# conda update --all
+RUN conda --version && conda update --all && conda --version && conda install -y --quiet \
 	jupyter \
 	Pillow \
  && conda config --add channels conda-forge \
 	# opencv3 install
  && conda install -c menpo opencv3 \
  && conda clean -tipsy
+
+# Install tensorflow-gpu
+RUN pip install apache-beam tensorflow-gpu==1.14.0
 
 # tini install
 ENV TINI_VERSION=v0.18.0
