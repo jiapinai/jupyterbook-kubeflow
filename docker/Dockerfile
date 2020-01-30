@@ -1,5 +1,4 @@
-FROM nvidia/cuda:9.2-cudnn7-devel
-
+FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu16.04
 USER root
 ENV DEBIAN_FRONTEND=noninteractive \
 	LANG=C.UTF-8 \
