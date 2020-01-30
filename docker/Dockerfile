@@ -28,6 +28,9 @@ RUN apt-get update -qq \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
+# Install tensorflow-gpu
+RUN pip install apache-beam tensorflow-gpu==1.14.0
+
 # ModuleNotFoundError: No module named 'conda'
 # https://github.com/conda/conda/issues/9004
 # conda install conda=4.6.14
@@ -54,8 +57,6 @@ RUN conda install -y --quiet \
 	magma-cuda91 \
 	cuda91 \
 	'pytorch=1.4.0'
-# Install tensorflow-gpu
-RUN pip install apache-beam tensorflow-gpu==1.14.0
 
 # Install Kale python package globally
 # Install Kale JupyterLab extension
