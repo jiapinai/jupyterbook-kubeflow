@@ -98,6 +98,24 @@ RUN pip uninstall numpy -y; \
 	pip uninstall numpy -y; \
 	pip install numpy==1.17.5
 
+# tensorrt install
+# https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html
+RUN apt-get update -qq \
+ && apt-get install --no-install-recommends -y \
+	libnvinfer7 libnvonnxparsers7 libnvparsers7 libnvinfer-plugin7 \
+        libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev libnvinfer-plugin-dev \
+        python-libnvinfer python3-libnvinfer \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+# install torch2trt
+# https://github.com/NVIDIA-AI-IOT/torch2trt
+RUN git clone https://github.com/NVIDIA-AI-IOT/torch2trt && \
+	cd torch2trt && \
+	python setup.py install && \
+	cd .. && \
+	rm -rf torch2trt
+
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
 # https://www.kubeflow.org/docs/notebooks/custom-notebook/
