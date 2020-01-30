@@ -10,6 +10,9 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	NOTEBOOK_PORT=8888 \
 	NB_PREFIX=''
 
+# Install tensorflow-gpu
+RUN pip install apache-beam tensorflow-gpu==1.14.0
+
 RUN apt-get update -qq \
  && apt-get upgrade -y \
  && apt-get install --no-install-recommends -y \
@@ -28,8 +31,6 @@ RUN apt-get update -qq \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-# Install tensorflow-gpu
-RUN pip install apache-beam tensorflow-gpu==1.14.0
 
 # ModuleNotFoundError: No module named 'conda'
 # https://github.com/conda/conda/issues/9004
