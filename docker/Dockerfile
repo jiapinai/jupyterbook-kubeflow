@@ -33,9 +33,17 @@ RUN apt-get update -qq \
 # https://github.com/conda/conda/issues/9004
 # conda install conda=4.6.14
 # conda update --all
-RUN conda --version \
+
+# tensorrt dose not support python3.6; have to downgrade python to 3.5.x
+RUN python --version \
+ && conda --version \
+ && conda install python=3.5.2 \
+ && python --version \
  && conda install conda \
  && conda --version \
+ && conda install python=3.5.2 \
+ && python --version \
+ && pip --version \
  && conda update --all \
  && conda install -y --quiet jupyter Pillow \
  && conda config --add channels conda-forge \
@@ -44,7 +52,10 @@ RUN conda --version \
  && conda clean -tipsy
 
 # Install tensorflow-gpu
-RUN pip install apache-beam \
+RUN conda --version \
+ && python --version \
+ && pip --version \
+ && pip install apache-beam \
 	tensorflow-gpu==1.14.0 \
 	tensorflow-transform==0.13.0 \
 	tensorflow_model_analysis==0.13.0 \
