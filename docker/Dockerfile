@@ -21,14 +21,13 @@ RUN apt-get update -qq \
 # anaconda install
  && echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh \
  #&& ANACONDA_INSTALL_SCRIPT=`curl https://repo.continuum.io/archive/ | grep '>Anaconda3.*-Linux-x86_64.sh<' | sed -e 's/.*>\(.*.sh\)<\/.*/\1/g' | sort -r | head -1` \
- && ANACONDA_INSTALL_SCRIPT='Anaconda3-5.2.0-Linux-x86_64.sh' \
+ && ANACONDA_INSTALL_SCRIPT='Anaconda3-4.2.0-Linux-x86_64.sh' \
  && wget --quiet https://repo.continuum.io/archive/$ANACONDA_INSTALL_SCRIPT -O ~/anaconda.sh \
  && /bin/bash ~/anaconda.sh -b -p /opt/conda \
  && rm ~/anaconda.sh \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-
-
+ 
 # ModuleNotFoundError: No module named 'conda'
 # https://github.com/conda/conda/issues/9004
 # conda install conda=4.6.14
