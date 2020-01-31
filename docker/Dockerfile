@@ -88,7 +88,7 @@ RUN     conda install -y --quiet -c conda-forge nodejs && \
 	echo 'notebook' && jupyter notebook --version && \
 #	pip install kubeflow-kale kfp
 	pip install kfp && \
-	git clone --branch v.0.4.0 https://github.com/kubeflow-kale/kale && \
+	git clone https://github.com/jiapinai/kale.git && \
 	cd kale && \
 	sed -i 's/3.6.0/3.5.0/' setup.py && \
 	python setup.py install && \
