@@ -86,7 +86,14 @@ RUN     conda install -y --quiet -c conda-forge nodejs && \
 	echo 'node' && node --version && \
 	echo 'npm' && npm --version && \
 	echo 'notebook' && jupyter notebook --version && \
-	pip install kubeflow-kale kfp
+#	pip install kubeflow-kale kfp
+	pip install kfp && \
+	git clone --branch v.0.4.0 https://github.com/kubeflow-kale/kale && \
+	cd kale && \
+	sed -i 's/3.6.0/3.5.0/' setup.py && \
+	python setup.py install && \
+	cd .. && \
+	rm -rf kale
 
 #Jupyter Notebook代码自动补全
 # -i https://pypi.mirrors.ustc.edu.cn/simple
