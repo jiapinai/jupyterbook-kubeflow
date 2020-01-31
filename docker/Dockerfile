@@ -37,11 +37,12 @@ RUN apt-get update -qq \
 # tensorrt dose not support python3.6; have to downgrade python to 3.5.x
 RUN python --version \
  && conda --version \
- && conda install python=3.5.2 \
- && python --version \
  && conda install conda \
  && conda --version \
  && conda install python=3.5.2 \
+ && conda create --name=anaconda3 anaconda python=3.5.2 \
+ && conda config --set core.default_env=anaconda3 \
+ && conda info \
  && python --version \
  && pip --version \
  && conda update --all \
@@ -110,7 +111,9 @@ RUN pip uninstall numpy -y; \
 
 # tensorrt install
 # https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html
-# ENV version='7.0.0-1+cuda9.2'
+# tensorrt available versions
+# https://developer.download.nvidia.cn/compute/machine-learning/repos/rhel7/x86_64/
+# ENV version='7.0.0-1.cuda9.0'
 ENV version='7.0.0-1+cuda10.2'
 RUN apt-get update -qq \
  && apt-get install -y \
