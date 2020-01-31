@@ -38,9 +38,6 @@ RUN python --version \
  && conda --version \
  && conda install conda \
  && conda --version \
- && conda install python=3.5 \
- && conda create --name=anaconda3 anaconda python=3.5 \
- && conda config --set core.default_env=anaconda3 \
  && conda info \
  && python --version \
  && pip --version \
