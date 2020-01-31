@@ -137,6 +137,9 @@ RUN apt-get update -qq \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
+# this's kind of important to make sure the lib is install for the python installed by conda
+RUN ln -s /usr/lib/python3.5/dist-packages/tensorrt /opt/conda/lib/python3.5/site-packages/
+
 # install torch2trt
 # https://github.com/NVIDIA-AI-IOT/torch2trt
 RUN git clone https://github.com/NVIDIA-AI-IOT/torch2trt && \
