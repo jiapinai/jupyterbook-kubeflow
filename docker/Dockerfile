@@ -34,13 +34,13 @@ RUN apt-get update -qq \
 # conda install conda=4.6.14
 # conda update --all
 
-# tensorrt dose not support python3.6; have to downgrade python to 3.5.x
+# tensorrt dose not support python3.6; have to downgrade python to 3.5
 RUN python --version \
  && conda --version \
  && conda install conda \
  && conda --version \
- && conda install python=3.5.2 \
- && conda create --name=anaconda3 anaconda python=3.5.2 \
+ && conda install python=3.5 \
+ && conda create --name=anaconda3 anaconda python=3.5 \
  && conda config --set core.default_env=anaconda3 \
  && conda info \
  && python --version \
