@@ -10,4 +10,4 @@
 
 # FROM nvcr.io/nvidia/tensorrtserver:19.03-py3
 # FROM nvcr.io/nvidia/tensorrtserver:20.01-py3
-FROM nvcr.io/nvidia/tensorrtserver:19.07-py3
+FROM nvcr.io/nvidia/tensorrtserver:19.08-py3
