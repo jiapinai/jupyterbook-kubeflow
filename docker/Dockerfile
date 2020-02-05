@@ -53,10 +53,10 @@ RUN conda --version \
  && python --version \
  && pip --version \
  && pip install apache-beam \
-	tensorflow-gpu==1.14.0 \
-	tensorflow-transform==0.13.0 \
-	tensorflow_model_analysis==0.13.0 \
-	tensorflow_data_validation==0.13.0 \
+	tensorflow-gpu==1.15.0 \
+	tensorflow-transform==0.14.0 \
+	tensorflow_model_analysis==0.14.0 \
+	tensorflow_data_validation==0.14.0 \
 	--ignore-installed
 
 # tini install
@@ -73,7 +73,7 @@ RUN conda install -y --quiet \
 	torchvision \
 	magma-cuda91 \
 	cuda91 \
-	'pytorch=1.4.0'
+	'pytorch=1.3.0'
 
 # Install Kale python package globally
 # Install Kale JupyterLab extension
