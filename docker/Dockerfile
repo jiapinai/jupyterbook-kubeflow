@@ -149,6 +149,8 @@ RUN git clone https://github.com/NVIDIA-AI-IOT/torch2trt && \
 	cd .. && \
 	rm -rf torch2trt
 
+RUN pip install --upgrade nni
+
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
 # https://www.kubeflow.org/docs/notebooks/custom-notebook/
