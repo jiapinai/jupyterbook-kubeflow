@@ -1,5 +1,4 @@
 FROM registry.cn-hangzhou.aliyuncs.com/kubeflow-ai/jupyterbook-kubeflow
-ENV PUBLIC_URL='/nni/'
 # https://github.com/kubeflow-kale/jupyterlab-kubeflow-kale
 CMD jupyter lab \
 	--config=/root/.jupyter/jupyter_notebook_config.json \
