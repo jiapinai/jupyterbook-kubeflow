@@ -113,42 +113,49 @@ RUN pip uninstall numpy -y; \
 	pip uninstall numpy -y; \
 	pip install numpy==1.17.5
 
+# 不再需要安装 tensorrt, 因为不需要吧pytorch转换成tensorrt格式
 # tensorrt install
 # https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html
 # tensorrt available versions
 # https://developer.download.nvidia.cn/compute/machine-learning/repos/rhel7/x86_64/
 # ENV version='7.0.0-1.cuda9.0'
-ENV version='7.0.0-1+cuda10.2'
-RUN apt-get update -qq \
- && apt-get install -y \
-	libnvinfer7=${version} \
-	libnvonnxparsers7=${version} \
-	libnvparsers7=${version} \
-	libnvinfer-plugin7=${version} \
-	libnvinfer-dev=${version} \
-	libnvonnxparsers-dev=${version} \
-	libnvparsers-dev=${version} \
-	libnvinfer-plugin-dev=${version} \
-	python-libnvinfer=${version} \
-	python3-libnvinfer=${version} \
- && apt-mark hold \
-	libnvinfer7 libnvonnxparsers7 libnvparsers7 libnvinfer-plugin7 \
-	libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev \
-	libnvinfer-plugin-dev python-libnvinfer python3-libnvinfer \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+# ENV version='7.0.0-1+cuda10.2'
+# RUN apt-get update -qq \
+#  && apt-get install -y \
+# 	libnvinfer7=${version} \
+# 	libnvonnxparsers7=${version} \
+# 	libnvparsers7=${version} \
+# 	libnvinfer-plugin7=${version} \
+# 	libnvinfer-dev=${version} \
+# 	libnvonnxparsers-dev=${version} \
+# 	libnvparsers-dev=${version} \
+# 	libnvinfer-plugin-dev=${version} \
+# 	python-libnvinfer=${version} \
+# 	python3-libnvinfer=${version} \
+#  && apt-mark hold \
+# 	libnvinfer7 libnvonnxparsers7 libnvparsers7 libnvinfer-plugin7 \
+# 	libnvinfer-dev libnvonnxparsers-dev libnvparsers-dev \
+# 	libnvinfer-plugin-dev python-libnvinfer python3-libnvinfer \
+#  && apt-get clean \
+#  && rm -rf /var/lib/apt/lists/*
+# 
+# # this's kind of important to make sure the lib is install for the python installed by conda
+# RUN ln -s /usr/lib/python3.5/dist-packages/tensorrt /opt/conda/lib/python3.5/site-packages/
+# 
+# # install torch2trt
+# # https://github.com/NVIDIA-AI-IOT/torch2trt
+# RUN git clone https://github.com/NVIDIA-AI-IOT/torch2trt && \
+# 	cd torch2trt && \
+# 	python setup.py install && \
+# 	cd .. && \
+# 	rm -rf torch2trt
 
-# this's kind of important to make sure the lib is install for the python installed by conda
-RUN ln -s /usr/lib/python3.5/dist-packages/tensorrt /opt/conda/lib/python3.5/site-packages/
+# Install kubectl
+RUN curl -L http://public.jiapinai.com/files_manager/1580132112966_kubectl-v1.17.2 -o kubectl \
+	&& chmod +x ./kubectl \
+	&& mv ./kubectl /usr/local/bin
 
-# install torch2trt
-# https://github.com/NVIDIA-AI-IOT/torch2trt
-RUN git clone https://github.com/NVIDIA-AI-IOT/torch2trt && \
-	cd torch2trt && \
-	python setup.py install && \
-	cd .. && \
-	rm -rf torch2trt
-
+ENV PUBLIC_URL='/nni/'
 RUN pip install --upgrade nni
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
