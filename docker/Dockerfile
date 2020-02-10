@@ -153,7 +153,13 @@ RUN pip uninstall numpy -y; \
 # Install kubectl
 RUN curl -L http://public.jiapinai.com/files_manager/1580132112966_kubectl-v1.17.2 -o kubectl \
 	&& chmod +x ./kubectl \
-	&& mv ./kubectl /usr/local/bin
+	&& mv ./kubectl /usr/local/bin \
+	&& wget http://public.jiapinai.com/files_manager/1581330474228_v1.10.0_ubuntu1604.clients.tar.gz -o trt-clients.tar.gz \
+	&& echo 'install tensorrt inference server client' \
+	&& tar xzf trt-clients.tar.gz \
+	&& rm -f trt-clients.tar.gz \
+	&& pip install ./v1.10.0_ubuntu1604.clients/python/tensorrtserver-1.10.0-py2.py3-none-linux_x86_64.whl \
+	&& rm -rf ./v1.10.0_ubuntu1604.clients
 
 ENV PUBLIC_URL='/nni/'
 RUN pip install --upgrade nni
